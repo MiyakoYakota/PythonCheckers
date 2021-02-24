@@ -13,7 +13,7 @@ Proxies Supported: SOCKS5, SOCKS5 Authenticated
 ## Getting Started
 
 - Install [Python](https://www.python.org/downloads/) (add to path while installing).
-- Generate a JWT guest session using the Jane app. (I recommend [Nox](https://www.bignox.com/) and [HTTPToolkit](https://httptoolkit.tech/)) 
+- Generate a JWT guest session using ``python generateBearer.py`` and then place it into ``checker.py``
 - Place your proxies into the same folder as the checker in ``proxies.txt``
 - Place your combos into the same folder as the checker in ``combo.txt``
 - Open your checker folder in PowerShell/CMD (``Shift+Right-Click`` ->`` Open in PowerShell/CMD``)

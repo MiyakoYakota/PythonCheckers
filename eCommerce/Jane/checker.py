@@ -13,7 +13,7 @@ proxies = [line.rstrip('\n') for line in open("proxies.txt", 'r')]
 LOGIN_ENDPOINT="https://login.jane.com/login"
 PAYMENT_ENDPOINT="https://paymentsv2.jane.com/customer"
 
-DEFAULT_BEARER="generate one in-app or email miyako@miyako.rocks and I can generate one for you."
+DEFAULT_BEARER="YourTokenHere"
 
 def generateHeaders(authorization, deviceId=None, sessionId=None):
     return {
