@@ -2,7 +2,6 @@
 
 Checks ``email:password`` combos against [https://api.doordash.com/v2/auth/web_login/](https://api.doordash.com/v2/auth/web_login/). 
 
-----
 
 ## Requirements
 
